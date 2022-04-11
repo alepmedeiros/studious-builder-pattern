@@ -1,0 +1,53 @@
+unit Types;
+
+interface
+
+uses
+  Pessoa,
+  System.TypInfo;
+
+type
+  TTipoTelefone = (COMERCIAL, CELULAR, RESIDENCIAL);
+
+  TTipoTelefoneHelper = record helper for TTipoTelefone
+    function toString : String;
+  end;
+
+  TPessoaHelper = class helper for TPessoa
+    function toString : String; overload;
+  end;
+
+implementation
+
+{ TTipoTelefoneHelper }
+
+function TTipoTelefoneHelper.toString: String;
+begin
+  Result := GetEnumName(Typeinfo(TTipoTelefone), Integer(Self));
+end;
+
+{ TPessoaHelper }
+
+function TPessoaHelper.toString: String;
+var
+  I : Integer;
+begin
+  Result := 'Pessoa(' +
+            'nome: ' + Self.Nome +
+            ', sobrenome: ' + Self.SobreNome +
+            ', dia: ' + Self.Dia.ToString +
+            ', mes: ' + Self.Mes.ToString +
+            ', ano: ' + Self.Ano.ToString +
+            ', endereco: ' + Self.Endereco.Logradouro +
+            ' '+Self.Endereco.Numero+' '+Self.Endereco.Complemento +
+            ', Bairro: '+ Self.Endereco.Bairro+
+            ', Cidade: '+ Self.Endereco.Cidade+
+            ', Pais: ' + Self.Endereco.Pais;
+  for I := 0 to Self.Telefone.Count -1 do
+    Result := Result +', Telefone: ' +
+              '('+Self.Telefone.Items[I].DDD.ToString+')'+
+              Self.Telefone.Items[I].Numero.ToString+
+              ', Tipo: ' + Self.Telefone.Items[I].Tipo.toString;
+end;
+
+end.

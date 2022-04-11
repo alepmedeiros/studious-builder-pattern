@@ -1,0 +1,19 @@
+unit FormAbstractBuilder;
+
+interface
+
+uses
+  System.Classes,
+  FMX.Forms;
+
+type
+  iFormBuilder = interface
+    function CreateSpeedButton : iFormBuilder;
+    function CreateEdit : iFormBuilder;
+    function CreateLabel : iFormBuilder;
+    function Form : TForm;
+  end;
+
+implementation
+
+end.

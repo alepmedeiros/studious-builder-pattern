@@ -1,0 +1,107 @@
+unit ConcreteBuilder;
+
+interface
+
+uses
+  Produto,
+  Builder,
+  Data.DB,
+  Datasnap.DBClient;
+
+type
+  TConcreteBuilder = class(TInterfacedObject, iBuilder)
+    private
+      FProduct: TProduto;
+      FDados: olevariant;
+      FQtdeRegistros: integer;
+    public
+      constructor Create(Dados: olevariant);
+      destructor Destroy; override;
+      procedure BuilderCabecalho;
+      procedure BuilderDetalhes;
+      procedure builderRodape;
+      function GetRelatorio : TProduto;
+  end;
+
+implementation
+
+uses
+  System.SysUtils;
+
+procedure TConcreteBuilder.BuilderCabecalho;
+begin
+  FProduct.Adicionar('<html><head><meta charset="UTF-8">');
+
+  FProduct.Adicionar('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">');
+  FProduct.Adicionar('<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>');
+
+  FProduct.Adicionar('</head>');
+  FProduct.Adicionar('<div class="container">');
+  FProduct.Adicionar('<div class="panel panel-default">');
+  FProduct.Adicionar('<div class="panel-heading">');
+  FProduct.Adicionar('<h4>Relatório de Fornecedores</h4>');
+  FProduct.Adicionar('<h4>' + FormatDateTime('dd/mm/yyyy hh:nn:ss', Now) + '</h4>');
+  FProduct.Adicionar('</div>');
+end;
+
+procedure TConcreteBuilder.BuilderDetalhes;
+var
+  DataSet: TClientDataSet;
+begin
+  // Preenche o conteúdo HTML referente à tabela de registros
+  FProduct.Adicionar('<table class="table table-fixed">');
+  FProduct.Adicionar('<thead><tr>');
+  FProduct.Adicionar('<th class="col-xs-2">Código</th>');
+  FProduct.Adicionar('<th class="col-xs-8">Fornecedor</th>');
+  FProduct.Adicionar('<th class="col-xs-2">Cidade</th>');
+  FProduct.Adicionar('</tr></thead><tbody>');
+
+  DataSet := TClientDataSet.Create(nil);
+  try
+    DataSet.Data := FDados;
+    DataSet.First;
+
+    // Para cada iteração nos registros do DataSet, criauma linha no HTML
+    while not DataSet.Eof do
+    begin
+      FProduct.Adicionar('<tr>');
+      FProduct.Adicionar('<td class="col-xs-2">' + DataSet.FieldByName('VendorNo').AsString + '</td>');
+      FProduct.Adicionar('<td class="col-xs-2">' + DataSet.FieldByName('VendorName').AsString + '</td>');
+      FProduct.Adicionar('<td class="col-xs-2">' + DataSet.FieldByName('City').AsString + '</td>');
+      FProduct.Adicionar('</tr>');
+
+      // Incrementa a variável de quantidade de registros
+      Inc(FQtdeRegistros);
+
+      DataSet.Next;
+    end;
+
+    // Fecha o HTML da tabela
+    FProduct.Adicionar('</tbody></table></div></div>');
+  finally
+    FreeAndNil(DataSet);
+  end;
+end;
+
+procedure TConcreteBuilder.builderRodape;
+begin
+
+end;
+
+constructor TConcreteBuilder.Create(Dados: olevariant);
+begin
+
+end;
+
+destructor TConcreteBuilder.Destroy;
+begin
+
+  inherited;
+end;
+
+function TConcreteBuilder.GetRelatorio: TProduto;
+begin
+
+end;
+
+end.

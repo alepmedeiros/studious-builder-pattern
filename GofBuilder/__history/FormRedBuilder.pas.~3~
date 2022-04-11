@@ -1,0 +1,78 @@
+unit FormRedBuilder;
+
+interface
+
+uses
+  FormAbstractBuilder, System.Classes, Vcl.Forms;
+
+{
+TRedFormBuilder = class(TAbstractFormBuilder)
+private
+  FNextLeft, FNextTop: Integer;
+public
+  procedure CreateForm(AOwner: TComponent); override;
+  procedure CreateSpeedButton; override;
+  procedure CreateEdit; override;
+  procedure CreateLabel; override;
+end;
+}
+
+type
+  TFormRedBuilder = class(TInterfacedObject, iFormBuilder)
+    private
+      FParent : TForm;
+    public
+      constructor Create;
+      destructor Destroy; override;
+      class function New : iFormBuilder;
+      function CreateForm(AOwner: TComponent) : iFormBuilder;
+      function CreateSpeedButton : iFormBuilder;
+      function CreateEdit : iFormBuilder;
+      function CreateLabel : iFormBuilder;
+      function Form : TForm; overload;
+  end;
+
+implementation
+
+constructor TFormRedBuilder.Create;
+begin
+
+end;
+
+function TFormRedBuilder.CreateEdit: iFormBuilder;
+begin
+
+end;
+
+function TFormRedBuilder.CreateForm(AOwner: TComponent): iFormBuilder;
+begin
+
+end;
+
+function TFormRedBuilder.CreateLabel: iFormBuilder;
+begin
+
+end;
+
+function TFormRedBuilder.CreateSpeedButton: iFormBuilder;
+begin
+
+end;
+
+destructor TFormRedBuilder.Destroy;
+begin
+
+  inherited;
+end;
+
+function TFormRedBuilder.Form: TForm;
+begin
+
+end;
+
+class function TFormRedBuilder.New : iFormBuilder;
+begin
+  Result := Self.Create;
+end;
+
+end.

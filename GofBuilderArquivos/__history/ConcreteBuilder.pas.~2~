@@ -1,0 +1,70 @@
+unit ConcreteBuilder;
+
+interface
+
+uses
+  Produto, Builder;
+
+type
+  TConcreteBuilder = class(TInterfacedObject, iBuilder)
+    private
+      FProduct: TProduto;
+      FDados: olevariant;
+      FQtdeRegistros: integer;
+    public
+      constructor Create(Dados: olevariant);
+      destructor Destroy; override;
+      procedure BuilderCabecalho;
+      procedure BuilderDetalhes;
+      procedure builderRodape;
+      function GetRelatorio : TProduto;
+  end;
+
+implementation
+
+uses
+  System.SysUtils;
+
+procedure TConcreteBuilder.BuilderCabecalho;
+begin
+  FProduct.Adicionar('<html><head><meta charset="UTF-8">');
+
+  FProduct.Adicionar('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">');
+  FProduct.Adicionar('<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>');
+
+  FProduct.Adicionar('</head>');
+  FProduct.Adicionar('<div class="container">');
+  FProduct.Adicionar('<div class="panel panel-default">');
+  FProduct.Adicionar('<div class="panel-heading">');
+  FProduct.Adicionar('<h4>Relatório de Fornecedores</h4>');
+  FProduct.Adicionar('<h4>' + FormatDateTime('dd/mm/yyyy hh:nn:ss', Now) + '</h4>');
+  FProduct.Adicionar('</div>');
+end;
+
+procedure TConcreteBuilder.BuilderDetalhes;
+begin
+
+end;
+
+procedure TConcreteBuilder.builderRodape;
+begin
+
+end;
+
+constructor TConcreteBuilder.Create(Dados: olevariant);
+begin
+
+end;
+
+destructor TConcreteBuilder.Destroy;
+begin
+
+  inherited;
+end;
+
+function TConcreteBuilder.GetRelatorio: TProduto;
+begin
+
+end;
+
+end.

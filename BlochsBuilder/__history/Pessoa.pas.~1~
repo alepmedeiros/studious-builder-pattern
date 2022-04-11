@@ -1,0 +1,30 @@
+unit Pessoa;
+
+interface
+
+uses
+  Endereco, Telefone, System.Generics.Collections;
+
+type
+  TPessoa = class
+  private
+    FSobreNome: String;
+    FMes: Integer;
+    FAno: Integer;
+    FDia: Integer;
+    FNome: string;
+    FEndereco: TEndereco;
+    FTelefone: TObjectList<TTelefone>;
+  public
+    property Nome : string read FNome write FNome;
+    property SobreNome : String read FSobreNome write FSobreNome;
+    property Dia : Integer read FDia write FDia;
+    property Mes : Integer read FMes write FMes;
+    property Ano : Integer read FAno write FAno;
+    property Endereco : TEndereco read FEndereco write FEndereco;
+    property Telefone : TObjectList<TTelefone> read FTelefone write FTelefone;
+  end;
+
+implementation
+
+end.

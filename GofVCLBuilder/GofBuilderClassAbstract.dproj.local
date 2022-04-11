@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2021/04/22 10:31:33.000.766,=C:\Users\Criacao\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2021/04/22 14:52:47.000.748,=C:\Users\Criacao\Documents\Embarcadero\Studio\Projects\Unit4.pas</Transaction>
+    <Transaction>2021/04/22 14:53:56.000.714,C:\ProjetosExemplo\exemploBuilderPatter\GofVCLBuilder\Unit4.dfm=C:\Users\Criacao\Documents\Embarcadero\Studio\Projects\Unit4.dfm</Transaction>
+    <Transaction>2021/04/22 14:53:56.000.714,C:\ProjetosExemplo\exemploBuilderPatter\GofVCLBuilder\Unit4.pas=C:\Users\Criacao\Documents\Embarcadero\Studio\Projects\Unit4.pas</Transaction>
+    <Transaction>2021/04/22 14:54:09.000.003,C:\ProjetosExemplo\exemploBuilderPatter\GofVCLBuilder\GofBuilderVCL.dproj=C:\Users\Criacao\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2021/04/22 15:24:15.000.035,C:\ProjetosExemplo\exemploBuilderPatter\GofVCLBuilder\GofBuilderClassAbstract.dproj=C:\ProjetosExemplo\exemploBuilderPatter\GofVCLBuilder\GofBuilderVCL.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

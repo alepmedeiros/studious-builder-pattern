@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2021/05/03 14:27:46.000.626,=C:\Users\Criacao\Documents\Embarcadero\Studio\Projects\Unit6.pas</Transaction>
+    <Transaction>2021/05/03 14:27:55.000.963,C:\Users\Criacao\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\Criacao\Documents\Embarcadero\Studio\Projects\GofbuilderSPED.dproj</Transaction>
+    <Transaction>2021/05/03 14:28:15.000.648,C:\Users\Criacao\Documents\Embarcadero\Studio\Projects\Unit6.dfm=C:\ProjetosExemplo\exemploBuilderPatter\GofBuildeSPED\Unit6.dfm</Transaction>
+    <Transaction>2021/05/03 14:28:15.000.648,C:\Users\Criacao\Documents\Embarcadero\Studio\Projects\Unit6.pas=C:\ProjetosExemplo\exemploBuilderPatter\GofBuildeSPED\Unit6.pas</Transaction>
+    <Transaction>2021/05/03 14:28:18.000.051,C:\Users\Criacao\Documents\Embarcadero\Studio\Projects\GofbuilderSPED.dproj=C:\ProjetosExemplo\exemploBuilderPatter\GofBuildeSPED\GofbuilderSPED.dproj</Transaction>
+    <Transaction>2021/11/11 12:19:12.000.355,=C:\ProjetosExemplo\exemploBuilderPatter\GofBuildeSPED\Unit7.pas</Transaction>
+  </Transactions>
+</BorlandProject>

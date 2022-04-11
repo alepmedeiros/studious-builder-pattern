@@ -1,0 +1,136 @@
+unit Unit4;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TAbstractFormBuilder = class
+  private
+    FForm: TForm;
+    procedure BuilderFormClose(Sender: TObject; var Action: TCloseAction);
+  protected
+    function GetForm: TForm; virtual;
+  public
+    procedure CreateForm(AOwner: TComponent); virtual;
+    procedure CreateSpeedButton; virtual; abstract;
+    procedure CreateEdit; virtual; abstract;
+    procedure CreateLabel; virtual; abstract;
+    property Form: TForm read GetForm;
+  end;
+
+  TRedFormBuilder = class(TAbstractFormBuilder)
+  private
+    FNextLeft, FNextTop: Integer;
+  public
+    procedure CreateForm(AOwner: TComponent); override;
+    procedure CreateSpeedButton; override;
+    procedure CreateEdit; override;
+    procedure CreateLabel; override;
+  end;
+//
+//  TBlueFormBuilder = class(TAbstractFormBuilder)
+//  private
+//    FNextLeft, FNextTop: Integer;
+//  public
+//    procedure CreateForm(AOwner: TComponent); override;
+//    procedure CreateSpeedButton; override;
+//    procedure CreateEdit; override;
+//    procedure CreateLabel; override;
+//  end;
+
+  TForm4 = class(TForm)
+    Button1: TButton;
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    procedure Create3ComponentFormUsingBuilder(ABuilder: TAbstractFormBuilder);
+  end;
+
+var
+  Form4: TForm4;
+
+implementation
+
+{$R *.dfm}
+
+{ TAbstractFormBuilder }
+
+procedure TAbstractFormBuilder.BuilderFormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  FForm.Free;
+end;
+
+procedure TAbstractFormBuilder.CreateForm(AOwner: TComponent);
+begin
+  FForm := TForm.Create(AOwner);
+end;
+
+function TAbstractFormBuilder.GetForm: TForm;
+begin
+  Result := FForm;
+end;
+
+{ TForm4 }
+
+procedure TForm4.Button1Click(Sender: TObject);
+begin
+  Create3ComponentFormUsingBuilder(TAbstractFormBuilder.Create);
+end;
+
+procedure TForm4.Create3ComponentFormUsingBuilder(
+  ABuilder: TAbstractFormBuilder);
+var
+  NewForm: TForm;
+begin
+  with ABuilder do begin
+    CreateForm(Application);
+    CreateEdit;
+    CreateSpeedButton;
+    CreateLabel;
+    NewForm := Form;
+    if NewForm <> nil then NewForm.Show;
+  end;
+end;
+
+{ TRedFormBuilder }
+
+procedure TRedFormBuilder.CreateEdit;
+var
+  lEdt : TEdit;
+begin
+  lEdt := TEdit.Create(Form);
+  lEdt.Parent := Form;
+  lEdt.Left := 10;
+  lEdt.Top := 30;
+  lEdt.Width := Form.ClientWidth -20;
+end;
+
+procedure TRedFormBuilder.CreateForm(AOwner: TComponent);
+begin
+  inherited;
+
+end;
+
+procedure TRedFormBuilder.CreateLabel;
+var
+  lLabel : TLabel;
+begin
+  Result := Self;
+  lLabel := TLabel.Create(Form);
+  lLabel.Parent  := Form;
+  lLabel.Caption := 'Digite seu nome:';
+  lLabel.Left    := 10;
+  lLabel.Top     := 10;
+end;
+
+procedure TRedFormBuilder.CreateSpeedButton;
+begin
+
+end;
+
+end.
